@@ -1,2 +1,2 @@
 # Sample Stock Prediction Repo
- Weather prediction website repository.
+Stock prediction website repository.
