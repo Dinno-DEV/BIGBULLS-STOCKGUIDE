@@ -1,10 +1,10 @@
 .search-bar-div{
     padding: 5px 6px 5px 15px;
     border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
     border-style: solid;
     border-width: 2px;
+    display: grid;
+    grid-template-columns: 90% 10%;
 }
 
 .search-bar{
