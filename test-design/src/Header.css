@@ -1,0 +1,12 @@
+Header{
+    display:grid;
+    column-gap: 5%;
+    grid-template-columns: 10% 70% 10%;
+}
+
+.button{
+    border-radius: 20px;
+    padding: 10px 20px;
+    border-style: solid;
+    border-width: 3px;
+}

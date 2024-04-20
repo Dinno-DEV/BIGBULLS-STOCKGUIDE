@@ -1,0 +1,25 @@
+.search-bar-div{
+    padding: 5px 6px 5px 15px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.search-bar{
+    border: 0px;
+    color: white;
+    border-color: transparent;
+    background-color: transparent;
+}
+.search-bar:focus{
+    outline: none;
+}
+
+.search-button{
+    border-radius: 15px;
+    min-width: 20px;
+    padding: 2px 15px;
+    border-style: solid;
+}
