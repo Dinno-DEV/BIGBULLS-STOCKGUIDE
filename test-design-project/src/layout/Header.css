@@ -1,0 +1,39 @@
+.header-container{
+    position: relative;
+    z-index: 0;
+    border-radius: 15px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.27);
+    overflow: hidden;
+    min-height: 80px;
+    width: 100%;
+    display: flex;
+}
+.header-background{
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F3%2F0%2Fb%2F1113364-beautiful-cool-space-background-wallpapers-1920x1080-for-computer.jpg&f=1&nofb=1&ipt=839477e0bb75d1d2f49a9ca60dfaf8a1dc499a18e0270f567b442fa44f542ea3&ipo=images");
+    background-size: cover;
+    background-position: center;
+    filter: contrast(50) blur(30px) brightness(50%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.header{
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 11px; left: 0;
+    width: 100%;
+}
+.header > h1{
+    margin: 0;
+    padding: 0 25px 0 15px;
+    text-align: center;
+}
+.header > hr{
+    border-color: hsla(0, 0%, 100%, 0.081);
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 15px;
+    height: 25px;
+}
