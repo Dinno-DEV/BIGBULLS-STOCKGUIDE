@@ -7,6 +7,9 @@
     min-height: 80px;
     width: 100%;
     display: flex;
+    border-style: solid;
+    border-width: 2px;
+    border-color: hsl(0, 0%, 19%);
 }
 .header-background{
     background-image: url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F3%2F0%2Fb%2F1113364-beautiful-cool-space-background-wallpapers-1920x1080-for-computer.jpg&f=1&nofb=1&ipt=839477e0bb75d1d2f49a9ca60dfaf8a1dc499a18e0270f567b442fa44f542ea3&ipo=images");

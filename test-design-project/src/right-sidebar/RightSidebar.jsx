@@ -4,7 +4,8 @@ import "./RightSidebar.css"
 function RightSidebar(){
     return(
         <div className="right-sidebar">
-            <h1>Stock Name</h1>
+            <h1>STN</h1>
+            <p className="stock-information">00:00 / 000 | 00:00 / 000</p>
             <GraphViewer />
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, alias. Nemo velit nam dolorum provident. Cumque voluptatem corporis ex perspiciatis. Amet esse aliquam non inventore in. Dignissimos, repellendus! Et, fuga.</p>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis ullam exercitationem autem unde quasi voluptate necessitatibus! Similique mollitia explicabo quo aut aliquid sapiente consectetur temporibus vel doloribus? Quod, inventore et.</p>
