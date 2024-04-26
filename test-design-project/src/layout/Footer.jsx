@@ -1,4 +1,7 @@
 function Footer(){
+
+    
+
     return(
         <div style={{padding:"10px",flexGrow:"0"}}>
             <footer>

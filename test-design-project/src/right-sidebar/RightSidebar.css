@@ -1,7 +1,7 @@
-.right-sidebar h1,p{
+.right-sidebar h1, .right-sidebar p{
     margin: 10px 10%;
 }
-.right-sidebar p {
+.right-sidebar > p {
     margin-top: 30px;
 }
 .right-sidebar > .stock-information{
