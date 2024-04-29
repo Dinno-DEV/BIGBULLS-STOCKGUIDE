@@ -15,7 +15,7 @@
 .left-sidebar-menu > button{
     background-color: transparent;
     border-color: transparent;
-    color: rgb(129, 129, 129);
+    color: hsl(0, 0%, 50%);
     padding:  0 15px 3px 15px;
     z-index: 1;
 }
@@ -34,9 +34,19 @@
     transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+button:hover{
+    color: white;
+}
+
 button:focus{
-    color: rgb(49, 49, 49);
+    color: hsl(0, 0%, 50%);
     transition: color 1ms;
     transition-delay: 160ms;
     transition-timing-function: ease-in-out;
+}
+
+.content-area{
+    position: relative;
+    padding: 10px 40px;
+    overflow-y: scroll;
 }
