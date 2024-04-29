@@ -1,0 +1,51 @@
+.graph-viewer{
+    margin: 0 10% 20px;
+    height: 320px;
+    border-radius: 0 0 15px 15px;
+    border-style: solid;
+    border-width: 2px;
+    overflow-x: scroll;
+}
+.graph-info{
+    margin: 0 10%;
+    padding: 3px 20px 7px;
+    border-radius: 15px 15px 0 0;
+    border-style: solid;
+    border-width: 2px 2px 0 2px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.graph-info > span{
+    min-width: max-content;
+}
+.graph-info button{
+    position: relative;
+    z-index: 3;
+    margin: 0 10px;
+    padding: 0;
+    background-color: transparent;
+    color: hsla(0, 0%, 50%, 1);
+    border: none;
+}
+.graph-info button:hover{
+    color: white;
+}
+.graph-info button:active{
+    color: hsla(0, 0%, 50%, 1);
+}
+.graph-info button:focus{
+    color: hsla(0, 0%, 50%, 1);
+}
+#time-interval-selector{
+    z-index: 1;
+    top: 4px;
+    left: 0;
+    position: absolute;
+    width: 65px;
+    background-color: white;
+    height: 21px;
+    border-radius: 15px;
+    transition: left 0.5s, width 0.5s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}

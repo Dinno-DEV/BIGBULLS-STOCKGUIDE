@@ -1,0 +1,12 @@
+.right-sidebar h1, .right-sidebar p{
+    margin: 10px 10%;
+}
+.right-sidebar > p {
+    margin-top: 30px;
+}
+.right-sidebar > .stock-information{
+    margin-top: 0;
+}
+.right-sidebar > h1{
+    margin-bottom: 0px;
+}

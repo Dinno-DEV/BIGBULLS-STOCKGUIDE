@@ -1,0 +1,15 @@
+.about-us-button{
+    padding: 5px 25px 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.522);
+    transition: color 0.2s;
+    transition-timing-function: ease-in-out;
+}
+.about-us-button:hover{
+    color: rgba(255, 255, 255, 0.879);
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.632);
+}
+.about-us-button:active{
+    color: rgb(209, 160, 255);
+}
