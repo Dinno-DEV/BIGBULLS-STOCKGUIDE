@@ -18,7 +18,7 @@ function App() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            key: 'GC=F', // This is where you need to send the name of the stock. 
+            key: 'TSLA', // This is where you need to send the name of the stock. 
           }),
         });
         if (!response.ok) {
@@ -45,7 +45,7 @@ function App() {
       ) : (
         data && (
           <div>
-            <h3>{data.PredictedPrice}</h3>
+            <h3>{data.StockName}</h3>
           </div>
         )
       )}
