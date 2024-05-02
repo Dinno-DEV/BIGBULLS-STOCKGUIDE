@@ -8,14 +8,16 @@ import yfinance as yf
 import pandas as pd
 
 def safe_execute(code):
-    try:
-        output = eval(code)
-        return str(output)
-    except Exception:
-        return 'NA'
+     try:
+          output = eval(code)
+          return str(output)
+     except Exception as e:
+          return 'NA'
     
 @api_view(['POST'])
 def receive_data(request):
+     global data, stock, info, CurrentFin, yhat_unnormalized_30m, yhat_unnormalized_1hr, yhat_unnormalized_1day, GraphData30m, GraphData60m, GraphData1d
+     
      data = request.data
      print('Got Value of:'+str(data['key'])+', Training')
      stock = yf.Ticker(str(data['key']))
