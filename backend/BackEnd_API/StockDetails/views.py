@@ -10,13 +10,14 @@ import pandas as pd
 def safe_execute(code):
      try:
           output = eval(code)
-          return str(output)
+          return output
      except Exception as e:
+          print("Error at Code:" + code + " ; Error:" + str(e))
           return 'NA'
     
 @api_view(['POST'])
 def receive_data(request):
-     global data, stock, info, CurrentFin, yhat_unnormalized_30m, yhat_unnormalized_1hr, yhat_unnormalized_1day, GraphData30m, GraphData60m, GraphData1d
+     global data, stock, info, CurrentFin, yhat_unnormalized_30m, yhat_unnormalized_1hr, yhat_unnormalized_1day, GraphData30m, GraphData60m, GraphData1d, hist1, hourly_data, hist
      
      data = request.data
      print('Got Value of:'+str(data['key'])+', Training')
@@ -26,7 +27,7 @@ def receive_data(request):
      for i in list(CurrentFin.keys()):
           CurrentFin[str(i)] =  CurrentFin.pop(i)   
     
-     #The Below is the 30m
+     # #The Below is the 30m
      hist1 = stock.history(period = '60d', interval = '30m')
     
      GraphData30m = hist1['Close'].iloc[-100:].to_dict()
@@ -64,10 +65,11 @@ def receive_data(request):
                                       'Close': 'last',
                                       'Volume': 'sum'})
     
-     GraphData60m = hourly_data['Close'].iloc[-100:].to_dict()
+     GraphData60m = hourly_data['Close'].dropna().iloc[-100:].to_dict()
+     
      for i in list(GraphData60m.keys()):
          GraphData60m[str(i)] = GraphData60m.pop(i)
-
+         
      hourly_data_normalized = (hourly_data - hourly_data.min()) / (hourly_data.max() - hourly_data.min())
      hourly_data_normalized.dropna(inplace=True)
      Y1hr = hourly_data_normalized['Close'].iloc[1:]
@@ -144,8 +146,10 @@ def receive_data(request):
                      "PredictedPrice_60M": safe_execute("str(yhat_unnormalized_1hr) + ' BY ' + str(hourly_data.index[-1] + pd.Timedelta(minutes=60))"),
                      "PredictedPrice_1D": safe_execute("str(yhat_unnormalized_1day) + ' BY ' + str(hist.index[-1] + pd.Timedelta(minutes=1440))"),
                      "Major_Holders": safe_execute("stock.major_holders.to_dict()['Value']"),
-                     "GraphData30M": safe_execute("GraphData30m"),
-                     "GraphData60M": safe_execute("GraphData60m"),
-                     "GraphData1D": safe_execute("GraphData1d"),
-                     
+                     "GraphData30MX": list(GraphData30m.keys()),
+                     "GraphData30MY": list(GraphData30m.values()),
+                     "GraphData60MX": list(GraphData60m.keys()),
+                     "GraphData60MY": list(GraphData60m.values()),
+                     "GraphData1dX": list(GraphData1d.keys()),
+                     "GraphData1dY": list(GraphData1d.values()),
                      }, status=200)
