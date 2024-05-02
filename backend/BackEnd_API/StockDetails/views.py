@@ -17,11 +17,16 @@ def receive_data(request):
     stock = yf.Ticker(str(data['key']))
     info = stock.info
     CurrentFin = stock.quarterly_financials.loc[['Total Revenue','Gross Profit', 'Net Income' ,'Cost Of Revenue', 'Operating Revenue', 'Total Expenses']].to_dict()
-    for i in list( CurrentFin.keys()):
+    for i in list(CurrentFin.keys()):
          CurrentFin[str(i)] =  CurrentFin.pop(i)   
     
     #The Below is the 30m
     hist1 = stock.history(period = '60d', interval = '30m')
+    
+    GraphData30m = hist1['Close'].iloc[-100:].to_dict()
+    for i in list(GraphData30m.keys()):
+         GraphData30m[str(i)] = GraphData30m.pop(i)
+         
     hist_normalized1 = (hist1 - hist1.min()) / (hist1.max() - hist1.min())
 
     Y1 = hist_normalized1['Close'].iloc[1:]
@@ -52,6 +57,10 @@ def receive_data(request):
                                       'Low': 'min',
                                       'Close': 'last',
                                       'Volume': 'sum'})
+    
+    GraphData60m = hourly_data['Close'].iloc[-100:].to_dict()
+    for i in list(GraphData60m.keys()):
+         GraphData60m[str(i)] = GraphData60m.pop(i)
 
     hourly_data_normalized = (hourly_data - hourly_data.min()) / (hourly_data.max() - hourly_data.min())
     hourly_data_normalized.dropna(inplace=True)
@@ -76,6 +85,11 @@ def receive_data(request):
     
     #The below is the 1day prediction
     hist = stock.history(period = '1y', interval = '1d')
+    
+    GraphData1d = hist['Close'].iloc[-100:].to_dict()
+    for i in list(GraphData1d.keys()):
+         GraphData1d[str(i)] = GraphData1d.pop(i)
+         
     hist_normalized = (hist - hist.min()) / (hist.max() - hist.min())
     hist_inference = hist_normalized.iloc[-1]
     hist_normalized = hist_normalized.iloc[:-1]
@@ -124,5 +138,8 @@ def receive_data(request):
                      "PredictedPrice_60M": str(yhat_unnormalized_1hr) + " BY " + str(hourly_data.index[-1] + pd.Timedelta(minutes=60)),
                      "PredictedPrice_1D": str(yhat_unnormalized_1day) + " BY " + str(hist.index[-1] + pd.Timedelta(minutes=1440)),
                      "Major_Holders": stock.major_holders.to_dict()['Value'],
+                     "GraphData30M": GraphData30m,
+                     "GraphData60M": GraphData60m,
+                     "GraphData1D": GraphData1d,
                      
                      }, status=200)
