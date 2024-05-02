@@ -18,7 +18,7 @@ function App() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            key: 'TSLA', // This is where you need to send the name of the stock. 
+            key: 'ASII.JK', // This is where you need to send the name of the stock. 
           }),
         });
         if (!response.ok) {
