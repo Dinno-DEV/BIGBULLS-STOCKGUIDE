@@ -7,6 +7,15 @@
   border-color: hsl(0, 0%, 19%);
 }
 
+*{
+  scrollbar-width: none;
+}
+
+* a{
+  color: rgb(72, 99, 237);
+  text-decoration: none;
+}
+
 body{
   margin: 0;
   padding: 0;

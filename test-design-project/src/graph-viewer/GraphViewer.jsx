@@ -11,7 +11,7 @@ function GraphViewer(){
 
     return(
         <>
-            <div className="graph-info sub-color">
+            <div className="graph-info sub-color-2">
                 <span>
                     <span style={{fontWeight:"100"}}>TIME</span><b>INTERVAL</b>
                 </span>

@@ -1,12 +1,67 @@
-.right-sidebar h1, .right-sidebar p{
-    margin: 10px 10%;
+.right-sidebar > *{
+    margin-left: 10%;
+    margin-right: 10%;
 }
 .right-sidebar > p {
     margin-top: 30px;
 }
-.right-sidebar > .stock-information{
-    margin-top: 0;
-}
 .right-sidebar > h1{
     margin-bottom: 0px;
+}
+.right-sidebar > h1 > span{
+    margin-bottom: 0px;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+/* Stock Info */
+.right-sidebar > .stock-information{
+    margin-top: 0;
+    font-size: small;
+    color: rgba(255, 255, 255, 0.4);
+}
+.right-sidebar > .stock-information > b{
+    font-size: medium;
+}
+.right-sidebar > .stock-information > i{
+    font-size: medium;
+}
+
+/* Predicted price */
+.predicted-price-panel{
+    display: flex;
+    justify-content: space-between;
+}
+.predicted-price-panel > div{
+    width: 31%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 15px;
+}
+.predicted-price-panel > div > p{
+    font-size: small;
+    padding: 10px;
+    margin: 0;
+    border-radius: 15px 15px 0 0;
+}
+.predicted-price-panel > div > p.predicted-price i{
+    font-size: large;
+}
+.predicted-price-panel > div > hr{
+    margin: 0;
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* General info */
+.general-information-tab{
+    width: 90%;
+}
+.general-information-tab tr td a{
+    color: rgb(72, 99, 237);
+    text-decoration: none;
+}
+.general-information-tab tr td:first-child{
+    font-weight: bold;
+    min-width: 175px;
 }

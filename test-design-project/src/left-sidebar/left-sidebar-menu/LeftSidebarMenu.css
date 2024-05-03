@@ -46,7 +46,36 @@ button:focus{
 }
 
 .content-area{
+    z-index: 3;
     position: relative;
     padding: 10px 40px;
+    max-height: 87%;
     overflow-y: scroll;
+}
+
+/* News panel */
+.news-panel > img{
+    width: 100%;
+    border-radius: 15px;
+}
+.news-panel div > h3, .news-panel div > p{
+    margin: 5px 0;
+}
+.news-panel div > p{
+    margin-bottom: 15px;
+}
+.news-panel hr{
+    color: #313131;
+    border-style: solid;
+    border-width: 1px;
+}
+.news-related-tickers{
+    margin: 25px 0 0;
+}
+.news-related-tickers span{
+    border-radius: 15px;
+    padding: 0px 15px 3px;
+    margin-left: 5px;
+    margin-top: 5px;
+    display: inline-block;
 }

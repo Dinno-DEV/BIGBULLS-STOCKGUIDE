@@ -24,11 +24,12 @@
     color: transparent;
     background: url("./search.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     filter: opacity(40%);
     border-color: transparent;
     outline: none;
     min-width: 30px;
+    width: 30px;
     transition: filter 0.2s;
     transition-timing-function: ease-in-out;
 }
