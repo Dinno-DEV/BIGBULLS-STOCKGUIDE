@@ -79,3 +79,12 @@ button:focus{
     margin-top: 5px;
     display: inline-block;
 }
+
+/* Finance panel */
+.finance-panel table{
+    width: 100%;
+}
+.finance-panel table tr td:first-child{
+    font-weight: bold;
+    width: 60%;
+}

@@ -7,8 +7,11 @@ import {
     LinearScale,
     Tooltip,
     Legend,
-    Colors
+    Colors,
+    plugins,
+    scales
 } from 'chart.js'
+import { useState, useEffect } from 'react'
 
 ChartJS.register(
     LineElement,
@@ -20,24 +23,62 @@ ChartJS.register(
     Colors
 )
 
-function MyLineGraph(){
+function MyLineGraph({stockData, isStockExist, timeDuringFetch, isLoading, errorFetchingData, interval}){
+    
+    function getXChart(){
+        if(interval == 0){
+            return stockData.GraphData30MX
+        }else if(interval == 1){
+            return stockData.GraphData60MX
+        }else if(interval == 2){
+            return stockData.GraphData1dX
+        }
+    }
+
+    function getYChart(){
+        if(interval == 0){
+            return stockData.GraphData30MY
+        }else if(interval == 1){
+            return stockData.GraphData60MY
+        }else if(interval == 2){
+            return stockData.GraphData1dY
+        }
+    }
+
     const myOptions = {
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                display: false,
+            },
+            y: {
+                title: {
+                    text: stockData.Currency,
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
     }
     const myData = {
-        labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40],
+        labels: getXChart(),
         datasets: [
             {
-                label: "Closing Price",
-                data: [2,3,5,2,4,8,1,7,5,7,8,4,5,3,3,5,6,7,6,4,3,2,4,5,7,8,8,6,4,2,6,4,3,2,3,4,5,6,3,2,3,4,5,2],
+                label: stockData.Currency,
+                data: getYChart(),
                 borderWidth: 1,
-                borderColor: '#f9f7f2',
+                borderColor: '#f9f7f275',
                 backgroundColor: '#f9f7f2',
                 fill: {
                     target: 'origin',
-                    above: '#ffffff20',
-                    below: '#ffffff20'
-                }
+                    above: '#ffffff15',
+                    below: '#ffffff15'
+                },
+                tension: 0,
+                pointStyle: 'rect'
             }
         ]
     }
