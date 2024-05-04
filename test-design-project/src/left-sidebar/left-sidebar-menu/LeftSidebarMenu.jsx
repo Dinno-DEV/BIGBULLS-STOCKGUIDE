@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import "./LeftSidebarMenu.css"
+import { FaMale, FaUser } from "react-icons/fa"
 
 function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, errorFetchingData}){
     const [currentTab,setCurrentTab] = useState(0);
@@ -22,6 +23,14 @@ function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, e
         setCurrentTab(2);
     }
 
+    function makeArray(amount){
+        const myArray = []
+        for (let i = 0; i < amount; i++){
+            myArray.push(i);
+        }
+        return myArray
+    }
+
     function currentFinance(){
         let financeTimes = Object.keys(stockData.CurrentFin);
         let theIndex = 0;
@@ -34,7 +43,21 @@ function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, e
         return financials
     }
 
+    function AnalystGrades(){
+        const content = stockData.AnalysisGrades.map((theGrades,key)=><>
+            <div className="analysis-panel sub-color">
+                <p>{theGrades.GradeDate}</p>
+                <div>
+                    <h1>{theGrades.Firm}</h1>
+                    <h2>{theGrades.ToGrade.toUpperCase()}</h2>
+                </div>
+            </div>
+        </>)
+        return(content)
+    }
+
     useEffect(()=>{
+        makeArray(3);
         if (trigger != 0){
             setCurrentFin(currentFinance);
         }
@@ -95,8 +118,8 @@ function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, e
                             (<>
                                 <h1>Finance</h1>
                                 {
-                                    currentFin.map((theFinance)=>
-                                        <div className="finance-panel">
+                                    currentFin.map((theFinance,key)=>
+                                        <div className="finance-panel sub-color" key={key}>
                                             <h2>{theFinance["Time Recorded"] != "NA"? theFinance["Time Recorded"] : "No data"}</h2>
                                             <table>
                                                 <tr>
@@ -168,16 +191,89 @@ function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, e
                                             </table>
                                             <br />
                                             <br />
-                                            <hr />
-                                            <br />
                                         </div>
                                     )
                                 }
 
                             </>):currentTab == 2?
                             (<>
-                                <h1>Analysis</h1>
-                                
+                                <br />
+                                <div className="recommendation-title">
+                                    <h1>Recommendations</h1>
+                                    <h2 style={
+                                        stockData.RecommendationSummary != "sell"?
+                                        stockData.RecommendationSummary != "hold"?
+                                        {color:"green"}:
+                                        {color:"yellow"}:
+                                        {color:"red"}
+                                    }>
+                                        {stockData.RecommendationSummary.toUpperCase()}
+                                    </h2>
+                                </div>
+                                <br />
+                                {
+                                    stockData.Recommendtations.map((theRec, key)=> <>
+                                        <div className="recommendation-panel sub-color" key={key}>
+                                            <h2>{
+                                                parseInt(theRec.period) == 0? "This Month" : 
+                                                parseInt(theRec.period) == -1? "Last month" :
+                                                parseInt(theRec.period) == -2? "2nd Last month":
+                                                parseInt(theRec.period) == -3? "3rd Last month"
+                                                :"-"
+                                            }</h2>
+                                            <div className="recommendations">
+                                                <div>{
+                                                    makeArray(parseInt(theRec.buy)).map((theNumber,key)=>
+                                                        <FaUser key={key}/>
+                                                    )
+                                                }</div>
+                                                <p> {`${theRec.buy} ${parseInt(theRec.buy) > 1? "analyst" : "analyst"} recommends buying`} </p>
+                                            </div>
+                                            <hr />
+                                            <div className="recommendations">
+                                                <div>{
+                                                    makeArray(parseInt(theRec.sell)).map((theNumber,key)=>
+                                                        <FaUser key={key}/>
+                                                    )
+                                                }</div>
+                                                <p> {`${theRec.sell} ${parseInt(theRec.sell) > 1? "analyst" : "analyst"} recommends selling`} </p>
+                                            </div>
+                                            <hr />
+                                            <div className="recommendations">
+                                                <div>{
+                                                    makeArray(parseInt(theRec.hold)).map((theNumber,key)=>
+                                                        <FaUser key={key}/>
+                                                    )
+                                                }</div>
+                                                <p> {`${theRec.hold} ${parseInt(theRec.hold) > 1? "analyst" : "analyst"} recommends holding`} </p>
+                                            </div>
+                                            <hr />
+                                            <div className="recommendations">
+                                                <div>{
+                                                    makeArray(parseInt(theRec.strongBuy)).map((theNumber,key)=>
+                                                        <FaUser key={key}/>
+                                                    )
+                                                }</div>
+                                                <p> {`${theRec.strongBuy} ${parseInt(theRec.strongBuy) > 1? "analyst" : "analyst"} strongly recommends buying`} </p>
+                                            </div>
+                                            <hr />
+                                            <div className="recommendations">
+                                                <div>{
+                                                    makeArray(parseInt(theRec.strongSell)).map((theNumber,key)=>
+                                                        <FaUser key={key}/>
+                                                    )
+                                                }</div>
+                                                <p> {`${theRec.strongSell} ${parseInt(theRec.strongSell) > 1? "analyst" : "analyst"} strongly recommends selling`} </p>
+                                            </div>
+                                            <br />
+                                            <br />
+                                        </div>
+                                        <br />
+                                    </>)
+                                }
+                                <br />
+                                <h1>Analyst Grades</h1>
+                                <AnalystGrades></AnalystGrades>
                             </>):
                             (<>
                             </>)

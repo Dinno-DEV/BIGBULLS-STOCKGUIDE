@@ -13,8 +13,10 @@ function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, erro
                         {stockData.StockSym}
                         <span> {stockData.StockName}</span>
                     </h1>
-                    <p className="stock-information"> 
-                        <b>{stockData.CurrentPrice} {stockData.Currency}  </b> 
+                    <p className="stock-information">
+                        <b> LAST CLOSE {stockData.PrevClose} {stockData.Currency}  </b> 
+                        <i>|</i>
+                        <b> OPEN {stockData.CurrentPrice} {stockData.Currency}  </b> 
                         at 
                         <i> {timeDuringFetch}</i>
                         <i> | </i>
@@ -28,6 +30,7 @@ function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, erro
                             )
                         }
                     </p>
+                    <br />
                 </>): errorFetchingData?
                 (<>
                     <h1>Stock Data Not Found</h1>
@@ -55,6 +58,18 @@ function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, erro
                     <p className="sub-color-2">{timeDuringFetch} + <i>24h</i></p>
                     <hr className="sub-color"/>
                     <p className="predicted-price"><i>{isStockExist?`${stockData.PredictedPrice_1D.substr(0,7)} ${stockData.Currency}`:`Loading`}</i></p>
+                </div>
+            </div>
+
+            <h2>Target Price</h2>
+            <div className="target-price sub-color-2">
+                <div>
+                    <h3>Target Mean Price</h3>
+                    <p>{stockData.TargetMeanPrice} {stockData.Currency}</p>
+                </div>
+                <div>
+                    <h3 style={{borderWidth:"0 0 0 2px", borderStyle:"solid"}}>Target Median Price</h3>
+                    <p style={{borderWidth:"2px 0 0 2px", borderStyle:"solid"}}>{stockData.TargetMedianPrice} {stockData.Currency}</p>
                 </div>
             </div>
 

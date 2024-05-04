@@ -17,6 +17,7 @@
 /* Stock Info */
 .right-sidebar > .stock-information{
     margin-top: 0;
+    margin-bottom: 0;
     font-size: small;
     color: rgba(255, 255, 255, 0.4);
 }
@@ -51,6 +52,28 @@
     margin: 0;
     border-width: 1px;
     border-style: solid;
+}
+
+/* Target price */
+.target-price{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid;
+    border-radius: 15px;
+}
+.target-price div{
+    flex-grow: 1;
+}
+.target-price div h3, .target-price div p{
+    margin: 0;
+    padding: 10px;
+    border-color: #353535;
+}
+.target-price div p{
+    border-style: solid;
+    border-width: 2px 0 0;
+    background-color: #161616;
+    font-style: italic;
 }
 
 /* General info */

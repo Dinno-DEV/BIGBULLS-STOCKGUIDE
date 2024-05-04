@@ -49,11 +49,25 @@ function MyLineGraph({stockData, isStockExist, timeDuringFetch, isLoading, error
         maintainAspectRatio: false,
         scales: {
             x: {
-                display: false,
+                display: true,
+                ticks: {
+                    display: false
+                },
+                border: {
+                    display: true
+                },
+                grid: {
+                    display: true,
+                    color: "#f7fc6f15"
+                }
             },
             y: {
                 title: {
                     text: stockData.Currency,
+                },
+                grid: {
+                    display: true,
+                    color: "#f7fc6f15"
                 }
             }
         },
@@ -70,12 +84,12 @@ function MyLineGraph({stockData, isStockExist, timeDuringFetch, isLoading, error
                 label: stockData.Currency,
                 data: getYChart(),
                 borderWidth: 1,
-                borderColor: '#f9f7f275',
-                backgroundColor: '#f9f7f2',
+                borderColor: '#f7fc6f75',
+                backgroundColor: '#f7fc6f',
                 fill: {
                     target: 'origin',
-                    above: '#ffffff15',
-                    below: '#ffffff15'
+                    above: '#f7fc6f15',
+                    below: '#f7fc6f15'
                 },
                 tension: 0,
                 pointStyle: 'rect'

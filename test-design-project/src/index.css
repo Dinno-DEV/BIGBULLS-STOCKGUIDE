@@ -14,6 +14,10 @@
 * a{
   color: rgb(72, 99, 237);
   text-decoration: none;
+  transition: all 150ms;
+}
+* a:hover{
+  color: hsl(230, 82%, 71%);
 }
 
 body{

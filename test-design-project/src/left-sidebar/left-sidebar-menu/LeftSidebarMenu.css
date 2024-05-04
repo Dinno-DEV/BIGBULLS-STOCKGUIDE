@@ -51,6 +51,9 @@ button:focus{
     padding: 10px 40px;
     max-height: 87%;
     overflow-y: scroll;
+    border-style: solid;
+    border-width: 2px 0 0;
+    border-color: #313131;
 }
 
 /* News panel */
@@ -81,10 +84,98 @@ button:focus{
 }
 
 /* Finance panel */
+.finance-panel{
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 15px;
+    padding: 20px 40px;
+    margin-bottom: 20px;
+}
 .finance-panel table{
     width: 100%;
+    border-collapse: collapse;
 }
 .finance-panel table tr td:first-child{
+    padding-left: 10px;
     font-weight: bold;
     width: 60%;
+    color: #808080;
+}
+.finance-panel table tr:hover{
+    background-color: #252525;
+    border: none;
+}
+
+
+/* Analysis Panel */
+.analysis-panel{
+    border: 2px solid;
+    padding: 20px 40px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+.analysis-panel div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.analysis-panel p{
+    margin: 0;
+}
+.analysis-panel div h1, .analysis-panel div h2{
+    margin: 0;
+}
+.analysis-panel div h1{
+    color: #757575;
+}
+.analysis-panel div h2{
+    color: rgb(180,180,0);
+    margin-left: 20px;
+    text-align: right;
+}
+
+/* Recommendation panel */
+.recommendation-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.recommendation-title h1, .recommendation-title h2{
+    margin: 0;
+}
+.recommendation-title h2{
+    margin-bottom: 2px;
+}
+
+.recommendation-panel{
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 15px;
+    padding: 20px 50px;
+}
+
+.recommendation-panel hr{
+    border-color: #353535;
+    border-style: solid;
+    border-width: 1px;
+    margin: 20px 0;
+}
+
+.recommendations{
+    display: flex;
+    justify-content: space-between;
+}
+
+.recommendations p, .recommendations div{
+    margin: 0;
+}
+
+.recommendations p{
+    min-width: 60%;
+    text-align: right;
+}
+
+.recommendations div:first-child{
+    color: hsl(240, 90%, 69%);
 }
