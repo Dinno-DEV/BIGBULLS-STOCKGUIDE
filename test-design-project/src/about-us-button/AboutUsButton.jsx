@@ -1,8 +1,8 @@
 import './AboutUsButton.css'
 
-function AboutUsButton(){
+function AboutUsButton({show}){
     return(
-        <a href="#" className="about-us-button">ABOUT <b>US</b></a>
+        <a href="#" className="about-us-button" onClick={show}>ABOUT <b>US</b></a>
     )
 }
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import "./LeftSidebarMenu.css"
 import { FaMale, FaUser } from "react-icons/fa"
 
-function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, errorFetchingData}){
+function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, errorFetchingData, effectTrigger}){
     const [currentTab,setCurrentTab] = useState(0);
     const [trigger,setTrigger] = useState(0)
     const [currentFin,setCurrentFin] = useState([])
@@ -29,6 +29,11 @@ function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, e
             myArray.push(i);
         }
         return myArray
+    }
+
+    function monthName(value){
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        return monthNames[value]
     }
 
     function currentFinance(){
@@ -215,10 +220,10 @@ function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, e
                                     stockData.Recommendtations.map((theRec, key)=> <>
                                         <div className="recommendation-panel sub-color" key={key}>
                                             <h2>{
-                                                parseInt(theRec.period) == 0? "This Month" : 
-                                                parseInt(theRec.period) == -1? "Last month" :
-                                                parseInt(theRec.period) == -2? "2nd Last month":
-                                                parseInt(theRec.period) == -3? "3rd Last month"
+                                                parseInt(theRec.period) == 0? "This month, " + monthName(new Date().getMonth()): 
+                                                parseInt(theRec.period) == -1? "Last month, " + monthName(new Date().getMonth()-1) :
+                                                parseInt(theRec.period) == -2? "On " + monthName(new Date().getMonth()-2):
+                                                parseInt(theRec.period) == -3? "On " + monthName(new Date().getMonth()-3)
                                                 :"-"
                                             }</h2>
                                             <div className="recommendations">
@@ -281,6 +286,9 @@ function LeftSidebarMenu({stockData, isStockExist, timeDuringFetch, isLoading, e
                     </>): errorFetchingData?
                     (<>
                         <p>Stock data not found</p>
+                    </>): effectTrigger == 0?
+                    (<>
+                        <p>Search to fetch data</p>
                     </>):
                     (<>
                         <p>Loading..</p>

@@ -3,7 +3,7 @@ import GraphViewer from "../graph-viewer/GraphViewer"
 import "./RightSidebar.css"
 import { useEffect } from "react"
 
-function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, errorFetchingData}){
+function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, errorFetchingData, effectTrigger}){
     return(
         <div className="right-sidebar">
             {
@@ -30,34 +30,38 @@ function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, erro
                             )
                         }
                     </p>
-                    <br />
                 </>): errorFetchingData?
                 (<>
                     <h1>Stock Data Not Found</h1>
                     <p className="stock-information">Data not found</p>
+                </>):effectTrigger == 0?
+                (<>
+                    <h1>Search to fetch data</h1>
+                    <p className="stock-information">Search stock to reveal data</p>
                 </>):
                 (<>
                     <h1>Loading..</h1>
                     <p className="stock-information">Loading..</p>
                 </>)
             }
+            <br />
             <GraphViewer stockData={stockData} isStockExist={isStockExist} timeDuringFetch={timeDuringFetch} isLoading={isLoading} errorFetchingData={errorFetchingData}/>
             <h2>Predicted Price</h2>
             <div className="predicted-price-panel">
                 <div className="sub-color">
                     <p className="sub-color-2">{timeDuringFetch} + <i>30m</i></p>
                     <hr className="sub-color"/>
-                    <p className="predicted-price"><i>{isStockExist?`${stockData.PredictedPrice_30M.substr(0,7)} ${stockData.Currency}`:`Loading`}</i></p>
+                    <p className="predicted-price"><i>{isStockExist?`${stockData.PredictedPrice_30M.substr(0,7)} ${stockData.Currency}`:effectTrigger == 0? `Search to fetch data` :`Loading`}</i></p>
                 </div>
                 <div className="sub-color">
                     <p className="sub-color-2">{timeDuringFetch} + <i>60m</i></p>
                     <hr className="sub-color"/>
-                    <p className="predicted-price"><i>{isStockExist?`${stockData.PredictedPrice_60M.substr(0,7)} ${stockData.Currency}`:`Loading`}</i></p>
+                    <p className="predicted-price"><i>{isStockExist?`${stockData.PredictedPrice_60M.substr(0,7)} ${stockData.Currency}`:effectTrigger == 0? `Search to fetch data` :`Loading`}</i></p>
                 </div>
                 <div className="sub-color">
                     <p className="sub-color-2">{timeDuringFetch} + <i>24h</i></p>
                     <hr className="sub-color"/>
-                    <p className="predicted-price"><i>{isStockExist?`${stockData.PredictedPrice_1D.substr(0,7)} ${stockData.Currency}`:`Loading`}</i></p>
+                    <p className="predicted-price"><i>{isStockExist?`${stockData.PredictedPrice_1D.substr(0,7)} ${stockData.Currency}`:effectTrigger == 0? `Search to fetch data` :`Loading`}</i></p>
                 </div>
             </div>
 
@@ -65,11 +69,11 @@ function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, erro
             <div className="target-price sub-color-2">
                 <div>
                     <h3>Target Mean Price</h3>
-                    <p>{stockData.TargetMeanPrice} {stockData.Currency}</p>
+                    <p>{ isStockExist? `${stockData.TargetMeanPrice} ${stockData.Currency}` : effectTrigger == 0? `Search to fetch data` : `Loading`}</p>
                 </div>
                 <div>
                     <h3 style={{borderWidth:"0 0 0 2px", borderStyle:"solid"}}>Target Median Price</h3>
-                    <p style={{borderWidth:"2px 0 0 2px", borderStyle:"solid"}}>{stockData.TargetMedianPrice} {stockData.Currency}</p>
+                    <p style={{borderWidth:"2px 0 0 2px", borderStyle:"solid"}}>{ isStockExist? `${stockData.TargetMedianPrice} ${stockData.Currency}` : effectTrigger == 0? `Search to fetch data` : `Loading`}</p>
                 </div>
             </div>
 
@@ -148,6 +152,9 @@ function RightSidebar({stockData, isStockExist, timeDuringFetch, isLoading, erro
                 </>): errorFetchingData?
                 (<>
                     <p style={{marginTop:"0px"}}>Data not found</p>
+                </>): effectTrigger == 0?
+                (<>
+                    <p style={{marginTop:"0px"}}>Search to fetch data</p>
                 </>):
                 (<>
                     <p style={{marginTop:"0px"}}>Loading..</p>
