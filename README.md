@@ -63,7 +63,7 @@ Ensure you have Python installed on your system. You'll also need to install the
 
    ```bash
    cd ./test-design-project
-   npm run de 
+   npm run dev
    ```
 
 ## Contributing
