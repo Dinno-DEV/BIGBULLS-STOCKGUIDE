@@ -88,7 +88,7 @@ def receive_data(request):
     
      In1hr = Inference1hr.values
      In1hr = In1hr.reshape((1, 1, In1hr.shape[0]))
-     pred = model(In1hr)
+     pred = model(In) #changed to In1hr
      yhat_unnormalized_1hr = pred.numpy().tolist()[0][0] * (hourly_data['Close'].max() - hourly_data['Close'].min()) + hourly_data['Close'].min()
     
      #The below is the 1day prediction
@@ -143,7 +143,7 @@ def receive_data(request):
                      "CurrentNews": safe_execute("stock.news"),
                      "CurrentFin":  safe_execute("CurrentFin"),
                      "PredictedPrice_30M": safe_execute("str(yhat_unnormalized_30m) + ' BY ' + str(hist1.index[-1] + pd.Timedelta(minutes=30))"), 
-                     "PredictedPrice_60M": safe_execute("str(yhat_unnormalized_1hr) + ' BY ' + str(hourly_data.index[-1] + pd.Timedelta(minutes=60))"),
+                     "PredictedPrice_60M": safe_execute("str(yhat_unnormalized_1hr) + ' BY ' + str(hist1.index[-1] + pd.Timedelta(minutes=60))"),
                      "PredictedPrice_1D": safe_execute("str(yhat_unnormalized_1day) + ' BY ' + str(hist.index[-1] + pd.Timedelta(minutes=1440))"),
                      "Major_Holders": safe_execute("stock.major_holders.to_dict()['Value']"),
                      "GraphData30MX": list(GraphData30m.keys()),
